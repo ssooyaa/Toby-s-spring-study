@@ -4,24 +4,15 @@ import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactor
 import org.springframework.boot.web.server.WebServer;
 import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.context.support.GenericWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
 @Configuration
+@ComponentScan //component를 찾아 빈으로 등록함
 public class HellobootApplication {
-
-    @Bean
-    public HelloController helloController(HelloService helloService) {
-        return new HelloController(helloService);
-    }
-
-    @Bean
-    public HelloService helloService() {
-        return new SimpleHelloService();
-        //구현클레스를 따로 만들었기 때문에 리턴타입을 SimpleHelloService가 아닌 HelloService로 작성
-    }
 
     public static void main(String[] args) {
 //        GenericWebApplicationContext는 java로 만든 Configuration 정보를 읽을 수 없다.
