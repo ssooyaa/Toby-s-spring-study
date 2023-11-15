@@ -15,6 +15,16 @@ import org.springframework.web.servlet.DispatcherServlet;
 @ComponentScan
 public class HellobootApplication {
 
+    @Bean
+    public ServletWebServerFactory servletWebServerFactory() {
+        return new TomcatServletWebServerFactory();
+    }
+
+    @Bean
+    public DispatcherServlet dispatcherServlet() {
+        return new DispatcherServlet();
+    }
+
     public static void main(String[] args) {
 //        GenericWebApplicationContext는 java로 만든 Configuration 정보를 읽을 수 없다.
 
@@ -23,10 +33,13 @@ public class HellobootApplication {
             protected void onRefresh() {
                 super.onRefresh();
 
-                ServletWebServerFactory serverFactory = new TomcatServletWebServerFactory();
+                ServletWebServerFactory serverFactory = this.getBean(ServletWebServerFactory.class);
+                DispatcherServlet dispatcherServlet = this.getBean(DispatcherServlet.class);
+                dispatcherServlet.setApplicationContext(this);
+
                 WebServer webServer = serverFactory.getWebServer(servletContext -> {
                     servletContext.addServlet("dispatcherServlet",
-                        new DispatcherServlet(this)
+                        dispatcherServlet
                     ).addMapping("/*");
                 });
                 webServer.start();
