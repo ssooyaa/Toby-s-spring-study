@@ -28,25 +28,9 @@ public class HellobootApplication {
     public static void main(String[] args) {
 //        GenericWebApplicationContext는 java로 만든 Configuration 정보를 읽을 수 없다.
 
-        AnnotationConfigWebApplicationContext applicationContext = new AnnotationConfigWebApplicationContext() {
-            @Override
-            protected void onRefresh() {
-                super.onRefresh();
-
-                ServletWebServerFactory serverFactory = this.getBean(ServletWebServerFactory.class);
-                DispatcherServlet dispatcherServlet = this.getBean(DispatcherServlet.class);
-                dispatcherServlet.setApplicationContext(this);
-
-                WebServer webServer = serverFactory.getWebServer(servletContext -> {
-                    servletContext.addServlet("dispatcherServlet",
-                        dispatcherServlet
-                    ).addMapping("/*");
-                });
-                webServer.start();
-            }
-        };
-        applicationContext.register(HellobootApplication.class);
-        applicationContext.refresh();//컨테이너를 초기화하는 작업
+        MySpringApplication.run(HellobootApplication.class, args);
 
     }
+
+
 }
