@@ -1,5 +1,6 @@
 package tobyspring.helloboot;
 
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.server.WebServer;
 import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
@@ -11,7 +12,7 @@ import org.springframework.web.context.support.GenericWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
 @Configuration
-@ComponentScan //component를 찾아 빈으로 등록함
+@ComponentScan
 public class HellobootApplication {
 
     public static void main(String[] args) {
@@ -32,7 +33,7 @@ public class HellobootApplication {
             }
         };
         applicationContext.register(HellobootApplication.class);
-        applicationContext.refresh(); //컨테이너를 초기화하는 작업
+        applicationContext.refresh();//컨테이너를 초기화하는 작업
 
     }
 }
