@@ -3,13 +3,16 @@ package tobyspring.config.aoutoconfig;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
+import tobyspring.config.ConditionalMyOnClass;
 import tobyspring.config.MyAutoConfiguration;
 
 @MyAutoConfiguration
+@ConditionalMyOnClass("rg.apache.catalina.startup.Tomcat")
 public class TomcatWebServerConfig {
 
-    @Bean
+    @Bean("tomcatWebServerFactory")
     public ServletWebServerFactory servletWebServerFactory() {
         return new TomcatServletWebServerFactory();
     }
+
 }
