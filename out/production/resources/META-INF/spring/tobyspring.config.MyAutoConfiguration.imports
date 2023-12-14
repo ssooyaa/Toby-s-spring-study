@@ -1,3 +1,5 @@
+tobyspring.config.aoutoconfig.DataSourceConfig
+tobyspring.config.aoutoconfig.MyDataSourceProperties
 tobyspring.config.aoutoconfig.PropertyPostProcessorConfig
 tobyspring.config.aoutoconfig.ServerProperties
 tobyspring.config.aoutoconfig.PropertyPlaceholderConfig
