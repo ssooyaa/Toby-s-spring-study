@@ -24,4 +24,9 @@ public class HelloController {
         return helloService.sayHello(name);
     }
 //    requestcontroller의 경우 ResponseBody가 기본 설정 되어있음
+
+    @GetMapping("/count")
+    public String count(String name) {
+        return name + ": " + helloService.countOf(name);
+    }
 }
